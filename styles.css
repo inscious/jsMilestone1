@@ -5,25 +5,17 @@
 }
 
 .container {
-    background-image: linear-gradient(
-        180deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(273deg 100% 21%) 6%,
-        hsl(291deg 100% 21%) 12%,
-        hsl(307deg 100% 23%) 17%,
-        hsl(317deg 100% 28%) 22%,
-        hsl(325deg 100% 33%) 28%,
-        hsl(331deg 100% 37%) 33%,
-        hsl(335deg 100% 41%) 37%,
-        hsl(339deg 100% 44%) 41%,
-        hsl(352deg 87% 56%) 45%,
-        hsl(4deg 96% 61%) 48%,
-        hsl(14deg 100% 60%) 50%,
-        hsl(23deg 100% 57%) 50%,
-        hsl(32deg 100% 54%) 53%,
-        hsl(39deg 100% 50%) 63%,
-        hsl(45deg 100% 50%) 76%,
-        hsl(50deg 100% 50%) 88%,
+        background-image: linear-gradient(
+        0deg,
+        hsl(240, 100%, 20%) 12%,
+        hsl(289deg 100% 21%) 53%,
+        hsl(315deg 100% 27%) 61%,
+        hsl(329deg 100% 36%) 64%,
+        hsl(337deg 100% 43%) 66%,
+        hsl(357deg 91% 59%) 67%,
+        hsl(17deg 100% 59%) 70%,
+        hsl(34deg 100% 53%) 76%,
+        hsl(45, 100%, 50%) 85%,
         hsl(55deg 100% 50%) 100%
         );
         height: 100vh;
@@ -37,7 +29,7 @@
     margin-top: 10%;
 }
 
-.display-player-box {
+.player-box {
     color: white;
     font-size: 25px;
     text-align: center;
@@ -53,11 +45,13 @@
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 33% 33% 33%;
+    column-gap: 1px;
     max-width: 300px;
 }
 
 .tile {
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    background-color: #d60053;
     min-width: 100px;
     min-height: 100px;
     display: flex;
@@ -65,6 +59,13 @@
     align-items: center;
     font-size: 50px;
     cursor: pointer;
+    opacity: .75;
+    transition: 0.3s;
+}
+
+.tile:hover {
+    opacity: 1;
+    background-color: #ffb600;
 }
 
 .playerX {
@@ -90,6 +91,16 @@
     border-radius: 8px;
     border: none;
     font-size: 20px;
-    margin-left: 1em;
+    /* margin-left: 1em; */
     cursor: pointer;
+    width: 300px;
+    opacity: .75;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 25px;
+    height: 25px;
+    text-align: center;
 }
