@@ -37,7 +37,7 @@ body {
     /* padding-top: 1px; */
     padding: 15px 30px;
     margin-bottom: 50px;
-    width: 80vh;
+    width: 60vh;
     margin: auto;
 }
 
@@ -143,10 +143,12 @@ body {
 
 .playerX {
     color: #ff89ac;
+    text-shadow: 2px 2px 6px rgba(0, 190, 196, 0.384);
 }    
 
 .playerO {
     color: #57e6ff;
+    text-shadow: 2px 2px 6px rgba(186, 123, 202, 0.384);
 }    
 
 /* CONTROLS */
@@ -176,6 +178,7 @@ body {
     border: none;
     font-size: 1em;
     letter-spacing: 5px;
+    text-shadow: 2px 2px 6px rgba(0, 190, 196, 0.384);
     cursor: pointer;
     width: 320px;
     min-width: 320px;
@@ -210,6 +213,7 @@ body {
     padding: 5px 0px;
     transition: .3s;
     min-width: 320px;
+    text-shadow: 2px 2px 6px rgba(0, 190, 196, 0.384);
 
     position: relative;
     -webkit-animation: slide .5s forwards;
@@ -227,8 +231,8 @@ body {
 /* FOOTER */
 
 footer {
-    background: linear-gradient(180deg, rgba(19,78,94,1) 26%, rgba(11,44,54,1) 100%);
-    color: rgb(255, 255, 255, .7);
+    background: linear-gradient(to bottom, rgb(94, 231, 223, .6) 0%, rgb(180, 144, 202, .6) 100%);
+    color: rgb(255, 255, 255, .9);
     padding: 25px;
     height: 25px;
     text-align: center;
@@ -236,7 +240,7 @@ footer {
     /* width: 100%; */
 }
 
-@media all and (max-width: 600px) {
+@media all and (min-width: 600px) {
     .title {
         margin-top: 25px;
         font-size: 1.7em;

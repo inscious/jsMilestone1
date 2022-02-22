@@ -8,9 +8,9 @@ window.addEventListener('DOMContentLoaded', () => {
     let currentPlayer = 'X';
     let isGameActive = true;
 
-    const PLAYERX_WON = 'PLAYERX_WON';
-    const PLAYERO_WON = 'PLAYERO_WON';
-    const TIE = 'TIE';
+    const playerXwins = 'playerXwins';
+    const playerOwins = 'playerOwins';
+    const draw = 'draw';
 
 // SOLUTIONS //
 
@@ -43,26 +43,26 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     if (roundWon) {
-            announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
+            announce(currentPlayer === 'X' ? playerXwins : playerOwins);
             isGameActive = false;
             return;
         }
     if (!board.includes(''))
-        announce(TIE);
+        announce(draw);
     }
 
-// announce win, loss, or tie using switch/case
+// announce win, loss, or draw using switch/case
 
     const announce = (type) => {
         switch(type){
-            case PLAYERO_WON:
+            case playerOwins:
                 announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
                 break;
-            case PLAYERX_WON:
+            case playerXwins:
                 announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
                 break;
-            case TIE:
-                announcer.innerText = 'Tie game!';
+            case draw:
+                announcer.innerText = 'draw game!';
         }
         announcer.classList.remove('hide');
     };
