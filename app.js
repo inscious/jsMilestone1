@@ -1,12 +1,23 @@
 // makes sure javascript runs when page loads
 window.addEventListener('DOMContentLoaded', () => {
-    const tiles = Array.from(document.querySelectorAll('.tile'));
     const playerDisplay = document.querySelector('.display-player');
-    const resetButton = document.querySelector('#reset');
+    const tiles = Array.from(document.querySelectorAll('.tile'));
     const displayResult = document.querySelector('.displayResult');
+    const resetButton = document.querySelector('#reset');
+    
+        // SOLUTIONS //
+        // each tile represents an index starting from 0   
+        const solutions = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
 
-    
-    
     // array used to store played tiles
     let board = ['', '', '', '', '', '', '', '', ''];
     // variable fro current players turn
@@ -15,25 +26,12 @@ window.addEventListener('DOMContentLoaded', () => {
     let isGameActive = true;
 
     // variables used to display winning messages
-    // player x wins message
-    const playerXwins = 'playerXwins';
-    // player o wins
-    const playerOwins = 'playerOwins';
     // game is a draw
     const draw = 'draw';
-
-    // SOLUTIONS //
-    // each tile represents an index starting from 0   
-    const solutions = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
+    // player o wins
+    const playerOwins = 'playerOwins';
+    // player x wins message
+    const playerXwins = 'playerXwins';
 
     // result validation
     function handleResultValidation() {
@@ -62,7 +60,7 @@ window.addEventListener('DOMContentLoaded', () => {
             isGameActive = false;
             return;
         }
-        // if no more indexes available, and no playter won, game draw
+        // if no more indexes available, and no player won, game draw
     if (!board.includes(''))
         display(draw);
     }
@@ -156,5 +154,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // reset button 
     resetButton.addEventListener('click', resetBoard);
-
 });
