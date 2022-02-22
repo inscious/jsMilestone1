@@ -1,8 +1,9 @@
+// makes sure javascript runs when page loads
 window.addEventListener('DOMContentLoaded', () => {
     const tiles = Array.from(document.querySelectorAll('.tile'));
     const playerDisplay = document.querySelector('.display-player');
     const resetButton = document.querySelector('#reset');
-    const displayr = document.querySelector('.displayr');
+    const displayResult = document.querySelector('.displayResult');
 
     
     
@@ -35,20 +36,23 @@ window.addEventListener('DOMContentLoaded', () => {
     ];
 
     // result validation
-
     function handleResultValidation() {
         // when functions runs, round won is false
         let roundWon = false;
-        // loop iterates through grid array, a b & c variables are 
+        // loop iterates through grid array, a b & c represent win condition indexes.
         for (let i = 0; i <= 7; i++) {
             const winCondition = solutions[i];
+            // index variables
             const a = board[winCondition[0]];
             const b = board[winCondition[1]];
             const c = board[winCondition[2]];
+            // if 3 strings are empty, continue game.
             if (a === '' || b === '' || c === '') {
                 continue;
             }
+            // winning conditions have to be played by the same player to win game
             if (a === b && b === c) {
+                // if true end game
                 roundWon = true;
                 break;
             }
@@ -58,6 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
             isGameActive = false;
             return;
         }
+        // if no more indexes available, and no playter won, game draw
     if (!board.includes(''))
         display(draw);
     }
@@ -67,81 +72,89 @@ window.addEventListener('DOMContentLoaded', () => {
     const display = (type) => {
         switch(type){
             case playerOwins:
-                displayr.innerHTML = 'Player O Won';
+                displayResult.innerHTML = 'Player O Won';
                 break;
             case playerXwins:
-                displayr.innerHTML = 'Player X Won';
+                displayResult.innerHTML = 'Player X Won';
                 break;
             case draw:
-                displayr.innerText = 'draw game!';
+                displayResult.innerText = 'Draw game!';
         }
-        displayr.classList.remove('hide');
     };
 
-// determines if action is valid
-// if tile already selected, return false, otehrwise, true.
-// update grid
-
+    // function to determine if an action is valid
     const isValidAction = (tile) => {
+        // if tile already selected, return false, otehrwise, true.
+        // sets inner text to player selction
         if (tile.innerText === 'X' || tile.innerText === 'O'){
             return false;
         }
         return true;
     };
-
+    
+    // updates grid
     const updateBoard =  (index) => {
+        // displays player move on index
         board[index] = currentPlayer;
     }
 
-    // switch player
-    /////////////////
-
+    // switch player function
     const changePlayer = () => {
+        // removes current player from display
         playerDisplay.classList.remove(`player${currentPlayer}`);
+        // ternary operator, if x is truthy then o will be current player
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
         playerDisplay.innerText = currentPlayer;
+        // updates diplayed player
         playerDisplay.classList.add(`player${currentPlayer}`);
     }
 
     // ///////// //
-    // user action //
-    // ///////// //
-
+    // user action function
     const userAction = (tile, index) => {
+        // if selected tile is empty and game is active,
         if(isValidAction(tile) && isGameActive) {
+            // then tile inner = current player
             tile.innerText = currentPlayer;
+            // adds players selection to tile
             tile.classList.add(`player${currentPlayer}`);
             updateBoard(index);
+            // 
             handleResultValidation();
+            // chnage player after previous player turn
             changePlayer();
         }
     }
 
     // reset button
-    
     const resetBoard = () => {
+        // clears array
         board = ['', '', '', '', '', '', '', '', ''];
+        // resets game active var
         isGameActive = true;
-        displayr.classList.add('hide');
-
+        // player x will always start game
         if (currentPlayer === 'O') {
             changePlayer();
         }
-
         tiles.forEach(tile => {
+            // clears tile indexes
             tile.innerText = '';
+            // removes player x from tiles
             tile.classList.remove('playerX');
+            //  removes player o from tiles
             tile.classList.remove('playerO');
-            displayr.innerHTML = ''
+            // clears display from result box
+            displayResult.innerHTML = ''
         });
     }
 
     // event listeners
-
+    // tile event listener
     tiles.forEach( (tile, index) => {
         tile.addEventListener('click', () => userAction(tile, index));
     });
 
+    // reset button 
     resetButton.addEventListener('click', resetBoard);
 
 });
