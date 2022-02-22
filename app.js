@@ -2,18 +2,27 @@ window.addEventListener('DOMContentLoaded', () => {
     const tiles = Array.from(document.querySelectorAll('.tile'));
     const playerDisplay = document.querySelector('.display-player');
     const resetButton = document.querySelector('#reset');
-    const announcer = document.querySelector('.announcer');
+    const displayr = document.querySelector('.displayr');
 
+    
+    
+    // array used to store played tiles
     let board = ['', '', '', '', '', '', '', '', ''];
+    // variable fro current players turn
     let currentPlayer = 'X';
+    // used to determine if game is over, win/loss/tie
     let isGameActive = true;
 
+    // variables used to display winning messages
+    // player x wins message
     const playerXwins = 'playerXwins';
+    // player o wins
     const playerOwins = 'playerOwins';
+    // game is a draw
     const draw = 'draw';
 
-// SOLUTIONS //
-
+    // SOLUTIONS //
+    // each tile represents an index starting from 0   
     const solutions = [
         [0, 1, 2],
         [3, 4, 5],
@@ -25,10 +34,12 @@ window.addEventListener('DOMContentLoaded', () => {
         [2, 4, 6]
     ];
 
-// result validation
+    // result validation
 
     function handleResultValidation() {
+        // when functions runs, round won is false
         let roundWon = false;
+        // loop iterates through grid array, a b & c variables are 
         for (let i = 0; i <= 7; i++) {
             const winCondition = solutions[i];
             const a = board[winCondition[0]];
@@ -43,28 +54,28 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     if (roundWon) {
-            announce(currentPlayer === 'X' ? playerXwins : playerOwins);
+            display(currentPlayer === 'X' ? playerXwins : playerOwins);
             isGameActive = false;
             return;
         }
     if (!board.includes(''))
-        announce(draw);
+        display(draw);
     }
 
-// announce win, loss, or draw using switch/case
+// display win, loss, or draw using switch/case
 
-    const announce = (type) => {
+    const display = (type) => {
         switch(type){
             case playerOwins:
-                announcer.innerHTML = 'Player <span class="playerO">O</span> Won';
+                displayr.innerHTML = 'Player O Won';
                 break;
             case playerXwins:
-                announcer.innerHTML = 'Player <span class="playerX">X</span> Won';
+                displayr.innerHTML = 'Player X Won';
                 break;
             case draw:
-                announcer.innerText = 'draw game!';
+                displayr.innerText = 'draw game!';
         }
-        announcer.classList.remove('hide');
+        displayr.classList.remove('hide');
     };
 
 // determines if action is valid
@@ -111,7 +122,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const resetBoard = () => {
         board = ['', '', '', '', '', '', '', '', ''];
         isGameActive = true;
-        announcer.classList.add('hide');
+        displayr.classList.add('hide');
 
         if (currentPlayer === 'O') {
             changePlayer();
@@ -121,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
             tile.innerText = '';
             tile.classList.remove('playerX');
             tile.classList.remove('playerO');
-            announcer.innerHTML = ''
+            displayr.innerHTML = ''
         });
     }
 

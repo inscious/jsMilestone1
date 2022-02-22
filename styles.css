@@ -196,7 +196,7 @@ body {
     opacity: 1;
 }
 
-.announcer {
+.displayr {
     text-align: center;
     margin: 15px;
     background-color: rgb(254, 214, 227, .3);
@@ -223,7 +223,7 @@ body {
     animation-delay: .63s;
 }
 
-/* .announcer:hover {
+/* .displayr:hover {
     background-color: rgb(254, 214, 227, .3);
     opacity: 1;
 } */
